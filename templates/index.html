@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment and Emotion Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Sentiment and Emotion Analysis</h1>
+    <form method="POST" action="/analyze">
+        <textarea name="text" rows="10" cols="30" placeholder="Enter text to analyze"></textarea><br>
+        <button type="submit">Analyze</button>
+    </form>
+    {% if sentiment %}
+    <h2>Analysis Result:</h2>
+    <p><strong>Text:</strong> {{ text }}</p>
+    <p><strong>Sentiment:</strong> {{ sentiment }}</p>
+    <p><strong>Emotion:</strong> {{ emotion }}</p>
+    <h3>Emotion Scores:</h3>
+    <ul>
+        {% for label, score in emotion_scores.items() %}
+        <li>{{ label }}: {{ score }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
